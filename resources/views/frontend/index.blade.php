@@ -16,7 +16,7 @@
 		
 		<!-- Favicon
 		============================================ -->
-		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+		<link rel="shortcut icon" type="image/png" href="{{asset('public/images/admin/logo/tt_favicon.png')}}" type="image/png">
 		
 		<!-- FONTS
 		============================================ -->	

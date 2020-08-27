@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <base href="{{ asset('public/admin') }}/">
   <title>@yield('title')</title>
-  <link rel="icon" href="{{asset('storage/app/logo/tt_favicon.png')}}" type="image/png">
+  <link rel="icon" href="{{asset('public/images/admin/logo/tt_favicon.png')}}" type="image/png">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
