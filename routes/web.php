@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'FrontendController@getHome');
 
 
-/*Admin*/
+/*----------------Admin------------------*/
 Route::group(['prefix' => '/admin','namespace'=>'Admin'],function(){
-/*Route::group(['middleware' => ['auth']], function ()
-{*/
-	Route::get('/','HomesController@index');
-/*});*/
+	Route::get('/login','AccountController@index');
+	Route::group(['middleware' => ['auth.admin']], function ()
+	{
+		Route::get('/','HomesController@index');
+	});
 });
 //Auth::routes();
 
