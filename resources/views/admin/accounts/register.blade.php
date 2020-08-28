@@ -33,7 +33,7 @@
       <form action="{{ url('admin/check-register') }}" method="post" class="validatedForm" id="registration" name="registration">
         @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="*Họ tên" id="name" name="name" required >
+          <input type="text" class="form-control" placeholder="*Họ tên" id="name" name="name" minlength="3" required >
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" id="email" placeholder="*Email" onblur = "checkemail()" required >
+          <input type="email" class="form-control" name="email" id="email" placeholder="*Email" required >
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -67,7 +67,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="number" class="form-control" name="phone" id="phone" placeholder="*Số điện thoại" onblur = "checkphone()" required >
+          <input type="number" class="form-control" name="phone" id="phone" placeholder="*Số điện thoại"  minlength="10" maxlength="13" required >
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-phone"></span>
@@ -127,7 +127,6 @@
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <script src="js/admin-js.js"></script>
-<script src="js/validate.js"></script>
-
+<script src="js/bootstrap-validate.js"></script>
 </body>
 </html>
