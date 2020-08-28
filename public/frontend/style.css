@@ -3288,6 +3288,13 @@ span.radio-box{}
 }
 span.required-field{
 	float:right;
+	margin-top: 33px;
+	color: red;
+}
+span.checkemail{
+	float:right;
+	margin-top: 33px;
+	color: red;
 }
 /*-----------------
 19. wishlist page

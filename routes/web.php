@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'FrontendController@getHome');
-
+Route::get('login','AccountController@getLogin');
 
 /*----------------Admin------------------*/
 Route::group(['prefix' => '/admin','namespace'=>'Admin'],function(){
