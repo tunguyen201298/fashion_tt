@@ -22,7 +22,67 @@
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<!-- CREATE-NEW-ACCOUNT START -->
 					<div class="create-new-account">
-						<form class="new-account-box primari-box" id="create-new-account" method="post" action="#">
+						<form class="primari-box personal-info-box" id="check" method="post" action="#">
+							<h3 class="box-subheading">Your personal information</h3>
+							<div class="personal-info-content">
+								
+								<div class="form-group primary-form-group p-info-group">
+									<span class="required-field"></span>
+									<label for="firstname">Name <sup>*</sup></label>
+									<input  type="text" value="" name="name" id="name" class="form-control input-feild" class="nameid" placeholder="Vui lòng nhập họ tên" required>
+									
+								</div>
+								
+								<div class="form-group primary-form-group p-info-group">
+									<span class="checkemail"></span>
+									<label for="email">Email<sup>*</sup></label>
+									<input type="email" value="" name="email" id="email" class="form-control input-feild">
+
+								</div>
+								<div class="form-group primary-form-group p-info-group">
+									<label for="email">Phone<sup>*</sup></label>
+									<input type="email" value="" name="phone" id="email" class="form-control input-feild">
+								</div>
+								<div class="form-group primary-form-group p-info-group">
+									<label for="password">Password <sup>*</sup></label>
+									<input type="password" value="" name="password" id="password" class="form-control input-feild">
+									<span class="min-pass">(Five characters minimum)</span> -->
+								</div>
+								<div class="form-group primary-form-group p-info-group">
+									<label for="password">Confirm Password <sup>*</sup></label>
+									<input type="password" value="" name="confirmpasswword" id="password" class="form-control input-feild">
+								</div>
+								<div class="form-group primary-form-group p-info-group">
+									<label for="password">Date of birth<sup>*</sup></label>
+									<input type="Date" value="" name="confirmpasswword" id="password" class="form-control input-feild">
+								</div>
+								 
+								<div class="form-group primary-form-group p-info-group">
+									<label class="cheker">
+										<input type="checkbox" name="checkbox">
+										<span></span>
+									</label>
+									<a href="#">Sign up for our newsletter!</a>
+								</div>
+								<div class="form-group primary-form-group p-info-group">
+									<label class="cheker">
+										<input type="checkbox" name="checkbox">
+										<span></span>
+									</label>
+									<a href="#">Receive special offers from our partners!</a>
+								</div>
+								<div class="submit-button p-info-submit-button">
+								<button type="submit" id="SubmitCreate" class="btn main-btn">
+									<span>
+										Register
+										<i class="fa fa-chevron-right"></i>
+									</span>											
+								</button>
+									
+								</div>
+							</div>
+						</form>	
+						<!-- <form class="new-account-box primari-box" id="create-new-account" method="post" action="#">
 							<h3 class="box-subheading">Create an account</h3>
 							<div class="form-content">
 								<p>Please enter your email address to create an account.</p>
@@ -39,7 +99,7 @@
 									</a>
 								</div>
 							</div>
-						</form>							
+						</form>	 -->						
 					</div>
 					<!-- CREATE-NEW-ACCOUNT END -->
 				</div>
@@ -297,4 +357,31 @@
 		</div>
 	</section>
 	<!-- COMPANY-FACALITY END -->
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+	<script type="text/javascript">
+		$('#name').on('blur change keyup', function(){
+			var regexname = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]{3,}$/g;
+			var name = $('#name').val();
+			if (name.length == 0) {
+				$('.required-field').text('Không được để trống');
+			}else if (!name.match(regexname)) {
+				$('.required-field').text('Tên không đúng');
+			}else{
+				$('.required-field').text(' ');
+			}
+		});
+		$('#email').on('blur change keyup', function(){
+			var regexemail = /^[a-z0-9]+([-._][a-z0-9]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{1,5}$/g;
+			if (name.length == 0) {
+				$('.checkemail').text('Không được để trống');
+			}else if (!name.match(regexemail)) {
+				$('.checkemail').text('Email không đúng');
+			}else{
+				$('.checkemail').text(' ');
+			}
+		});
+		//cái này là jquery đây ời mà ren hắn k chạy cái jquery ni hị
+	</script>
 @stop	
