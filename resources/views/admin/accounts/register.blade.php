@@ -30,9 +30,10 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Đăng ký tài khoản.</p>
 
-      <form action="" method="post">
+      <form action="{{ url('admin/check-register') }}" method="post" class="validatedForm" id="registration" name="registration">
+        @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Họ tên" id="name" name="name" onblur = "checkname()">
+          <input type="text" class="form-control" placeholder="*Họ tên" id="name" name="name" required >
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -42,7 +43,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" placeholder="Email" >
+          <input type="email" class="form-control" name="email" id="email" placeholder="*Email" onblur = "checkemail()" required >
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -50,7 +51,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
+          <input type="password" class="form-control" id="password" name="password" placeholder="*Mật khẩu"  minlength="6" maxlength="30" required >
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -58,7 +59,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="cf_password" placeholder="Nhập lại mật khẩu">
+          <input type="password" class="form-control" name="password_confirm" id="password_confirm"  placeholder="*Nhập lại mật khẩu" maxlength="30" minlength="6" required >
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -66,7 +67,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="number" class="form-control" name="phone" placeholder="Số điện thoại">
+          <input type="number" class="form-control" name="phone" id="phone" placeholder="*Số điện thoại" onblur = "checkphone()" required >
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-phone"></span>
@@ -74,7 +75,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="date" class="form-control" name="birthday" placeholder="Ngày sinh" min="1990-01-01" max="2020-01-01">
+          <input type="date" class="form-control birthday" name="birthday" id="birthday" placeholder="*Ngày sinh" min="1990-01-01" max="2020-01-01" required >
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-birthday-cake"></span>
@@ -126,5 +127,7 @@
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <script src="js/admin-js.js"></script>
+<script src="js/validate.js"></script>
+
 </body>
 </html>

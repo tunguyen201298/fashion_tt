@@ -17,4 +17,8 @@ class AccountController extends Controller
     	$title = 'Đăng ký';
     	return view('admin.accounts.register', compact('title'));
     }
+    public function checkRegister(Request $request)
+    {
+        dd($request->all());
+    }
 }
