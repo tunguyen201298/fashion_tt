@@ -20,6 +20,9 @@ Route::get('login','AccountController@getLogin');
 /*----------------Admin------------------*/
 Route::group(['prefix' => '/admin','namespace'=>'Admin'],function(){
 	Route::get('/login','AccountController@index');
+	Route::get('/register','AccountController@register');
+	Route::post('/check-register', 'AccountController@checkRegister');
+
 	Route::group(['middleware' => ['auth.admin']], function ()
 	{
 		Route::get('/','HomesController@index');

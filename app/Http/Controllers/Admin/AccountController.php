@@ -12,4 +12,13 @@ class AccountController extends Controller
     	$title = 'Đăng nhập';
     	return view('admin.accounts.login', compact('title'));
     }
+    public function register()
+    {
+    	$title = 'Đăng ký';
+    	return view('admin.accounts.register', compact('title'));
+    }
+    public function checkRegister(Request $request)
+    {
+        dd($request->all());
+    }
 }

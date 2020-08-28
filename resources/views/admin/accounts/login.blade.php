@@ -66,7 +66,7 @@
       </form>
 
       <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
+        <p>- HOẶC -</p>
         <a href="#" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i> Đăng nhập bằng Facebook
         </a>
@@ -80,7 +80,7 @@
         <a href="forgot-password.html">Quên mật khẩu</a>
       </p>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Đăng ký tài khoản</a>
+        <a href="{{ url('admin/register') }}" class="text-center">Đăng ký tài khoản</a>
       </p>
     </div>
     <!-- /.login-card-body -->
