@@ -21,25 +21,7 @@ class AccountController extends Controller
     {
         dd($request->all());
     }
-    public function role()
-    {
-        $title = 'Phân quyền';
-        return view('admin.roles.index', compact('title'));
-    }
-    public function createRole()
-    {
-        $title = 'Thêm mới quyền';
-        return view('admin.roles.create', compact('title'));
-    }
-    public function storeRole(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|max:100'
-        ],
-        [
-            'required' => 'Thông tin bắt buộc',
-            'max' => 'Dữ liệu quá dài'
-        ]
-        );
-    }
+    
+   
+    
 }

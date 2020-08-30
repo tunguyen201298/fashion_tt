@@ -10,7 +10,7 @@
 
           <div class="card-tools">
           	<a href="{{ url('admin/roles/create') }}" class="btn btn-block btn-info btn-sm add-role">Thêm mới</a>
-            <a href="" class="btn btn-block btn-default btn-sm add-role">Tải lại</a>
+            <a href="{{ url('admin/roles') }}" class="btn btn-block btn-default btn-sm add-role">Tải lại</a>
             
           </div>
         </div>
@@ -25,23 +25,21 @@
                           Tên
                       </th>
                      
-                      <th style="width: 30%">
+                      <th style="width: 21%;" class="text-center">Thao tác
                       </th>
                   </tr>
               </thead>
               <tbody>
+                @foreach($roles as $role)
                   <tr>
                       <td class="text-center">
-                          1
+                          {{ $no++ }}
                       </td>
                       <td>
                           <a>
-                              AdminLTE v3
+                              {{ $role->name }}
                           </a>
-                          <br/>
-                          <small>
-                              Created 01.01.2019
-                          </small>
+                          
                       </td>
                       
                       <td class="project-actions text-right">
@@ -50,7 +48,7 @@
                               </i>
                               View
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="{{ url('admin/roles/edit/') }}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
@@ -62,7 +60,7 @@
                           </a>
                       </td>
                   </tr>
-                  
+                @endforeach  
               </tbody>
           </table>
         </div>
