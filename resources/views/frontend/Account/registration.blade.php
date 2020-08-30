@@ -36,25 +36,31 @@
 								<div class="form-group primary-form-group p-info-group">
 									<span class="checkemail"></span>
 									<label for="email">Email<sup>*</sup></label>
-									<input type="email" value="" name="email" id="email" class="form-control input-feild">
+									<input type="email" value="" name="email" id="email" class="form-control input-feild" placeholder="Vui lòng nhập email">
 
 								</div>
 								<div class="form-group primary-form-group p-info-group">
+									<span class="checkphone"></span>
 									<label for="email">Phone<sup>*</sup></label>
-									<input type="email" value="" name="phone" id="email" class="form-control input-feild">
+									<input type="email" value="" name="phone" id="phone" class="form-control input-feild" placeholder="Vui lòng nhập số điện thoại">
 								</div>
 								<div class="form-group primary-form-group p-info-group">
+									<span class="checkpass"></span>
 									<label for="password">Password <sup>*</sup></label>
-									<input type="password" value="" name="password" id="password" class="form-control input-feild">
-									<span class="min-pass">(Five characters minimum)</span> -->
+									<input type="password" value="" name="password" id="password" class="form-control input-feild" placeholder="Vui lòng nhập password">
+									<!-- <span class="min-pass">(Five characters minimum)</span> -->
+									<input  type="button" id="showPassword" value="show pass" class="btnpass" />
+    																	
+								</button>
 								</div>
 								<div class="form-group primary-form-group p-info-group">
+									<span class="checkconfirm"></span>
 									<label for="password">Confirm Password <sup>*</sup></label>
-									<input type="password" value="" name="confirmpasswword" id="password" class="form-control input-feild">
+									<input type="password" value="" name="confirmpassword" id="confirmpassword" class="form-control input-feild" placeholder="Nhập lại password">
 								</div>
 								<div class="form-group primary-form-group p-info-group">
 									<label for="password">Date of birth<sup>*</sup></label>
-									<input type="Date" value="" name="confirmpasswword" id="password" class="form-control input-feild">
+									<input type="Date" value="" name="date" id="date" class="form-control input-feild">
 								</div>
 								 
 								<div class="form-group primary-form-group p-info-group">
@@ -365,23 +371,75 @@
 			var regexname = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]{3,}$/g;
 			var name = $('#name').val();
 			if (name.length == 0) {
-				$('.required-field').text('Không được để trống');
+				$('.required-field').text('Tên không được để trống');
 			}else if (!name.match(regexname)) {
 				$('.required-field').text('Tên không đúng');
 			}else{
 				$('.required-field').text(' ');
 			}
 		});
+
 		$('#email').on('blur change keyup', function(){
-			var regexemail = /^[a-z0-9]+([-._][a-z0-9]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{1,5}$/g;
+			const regexemail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+			var name = $('#email').val();
 			if (name.length == 0) {
-				$('.checkemail').text('Không được để trống');
+				$('.checkemail').text('Email không được để trống');
 			}else if (!name.match(regexemail)) {
 				$('.checkemail').text('Email không đúng');
 			}else{
 				$('.checkemail').text(' ');
 			}
 		});
-		//cái này là jquery đây ời mà ren hắn k chạy cái jquery ni hị
+
+		$('#phone').on('blur change keyup', function(){
+			var phone = $("#phone").val();
+			if (phone.length == 0){
+				$(".checkphone").text("SĐT không được để trông!!!");
+			}else if(phone.length < 10 || phone.length > 15){
+				$(".checkphone").text("SĐT không đúng!!!");
+			}else{
+				$(".checkphone").text(" ");
+			}
+		});
+
+		$('#password').on('blur change keyup', function(){
+			var password = $("#password").val();
+			if (password.length == 0){
+				$(".checkpass").text("Password không được để trông!!!");
+			}else if(password.length < 5){
+				$(".checkpass").text("Password quá ngắn!!");
+			}else{
+				$(".checkpass").text(" ");
+			}
+		});
+
+		$(document).ready(function(){
+		  $('#showPassword').on('click', function(){
+		    
+		    var passwordField = $('#password');
+		    var passwordFieldType = passwordField.attr('type');
+		    if(passwordFieldType == 'password')
+		    {
+		        passwordField.attr('type', 'text');
+		        $(this).val('Hide');
+		    } else {
+		        passwordField.attr('type', 'password');
+		        $(this).val('Show');
+		    }
+		  });
+		});
+		
+			$('#confirmpassword').on('blur change keyup', function(){
+			
+				var password = $("#password").val();
+				var confirmpassword = $("#confirmpassword").val();
+				if (confirmpassword.length == 0){
+					$(".checkconfirm").text("Password không được để trống!!!");
+				}else if(confirmpassword != password){
+					$(".checkconfirm").text("Password k khớp");
+				}else{
+					$(".checkconfirm").text(" ");
+				}
+			});
 	</script>
 @stop	

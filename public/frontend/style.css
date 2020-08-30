@@ -3296,6 +3296,28 @@ span.checkemail{
 	margin-top: 33px;
 	color: red;
 }
+span.checkphone{
+	float:right;
+	margin-top: 33px;
+	color: red;
+}
+span.checkpass{
+	float:right;
+	margin-top: 33px;
+	color: red;
+}
+span.checkconfirm{
+	float:right;
+	margin-top: 33px;
+	color: red;
+}
+input.btnpass{
+	width: 73px;
+	height: 33px;
+	background-color: #ebebeb;
+	border-color: #ebebeb;
+	color: #6284a1;
+}
 /*-----------------
 19. wishlist page
 ------------------*/
