@@ -31,35 +31,3 @@
       </div><!-- /.container-fluid -->
     </section>
 @stop
-@section('scripts')
-<script type="text/javascript">
-$(document).ready(function () {
-  
-  $('#createRole').validate({
-    rules: {
-      nameRole: {
-        required: true,
-        minlength: 2
-      }
-    },
-    messages: {
-      nameRole: {
-        required: "Vui lòng nhập vào",
-        minlength: "Tên quá ngắn"
-      }
-    },
-    errorElement: 'span',
-    errorPlacement: function (error, element) {
-      error.addClass('invalid-feedback');
-      element.closest('.form-group').append(error);
-    },
-    highlight: function (element, errorClass, validClass) {
-      $(element).addClass('is-invalid');
-    },
-    unhighlight: function (element, errorClass, validClass) {
-      $(element).removeClass('is-invalid');
-    }
-  });
-});
-</script>
-@stop

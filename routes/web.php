@@ -24,9 +24,9 @@ Route::group(['prefix' => '/admin','namespace'=>'Admin'],function(){
 	Route::post('/check-register', 'AccountController@checkRegister');
 	Route::get('/','HomesController@index');
 	Route::group(['prefix' => '/roles'], function(){
-		Route::get('/', 'AccountController@role');
-		Route::get('/create', 'AccountController@createRole');
-		Route::post('/store', 'AccountController@storeRole');
+		Route::get('/', 'RolesController@index');
+		Route::get('/create', 'RolesController@create');
+		Route::post('/store', 'RolesController@store');
 	});
 	
 	/*Route::group(['middleware' => ['auth.admin']], function ()
@@ -37,3 +37,4 @@ Route::group(['prefix' => '/admin','namespace'=>'Admin'],function(){
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
+//Route::resource('users', UsersController::class);
