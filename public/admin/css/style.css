@@ -31,16 +31,9 @@
     text-align: center;
     pointer-events: none;
 }
-.mark-true{
-	border-color: green !important
-	/*border: solid 1px green !important;
-	border-top-left-radius: 5px !important;
-	border-bottom-left-radius: 5px !important;
-	border-right: 0 !important*/
+img.brand-image.img-circle.elevation-3 {
+    background-color: #fff !important;
 }
-/*.mark-true{
-	border: solid 1px green !important;
-	border-top-left-radius: 5px !important;
-	border-bottom-left-radius: 5px !important;
-	border-right: 0 !important
-}*/
+.add-role{
+	display: inline;
+}
