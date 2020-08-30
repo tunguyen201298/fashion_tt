@@ -3290,26 +3290,31 @@ span.required-field{
 	float:right;
 	margin-top: 33px;
 	color: red;
+	font-family: cursive;
 }
 span.checkemail{
 	float:right;
 	margin-top: 33px;
 	color: red;
+	font-family: cursive;
 }
 span.checkphone{
 	float:right;
 	margin-top: 33px;
 	color: red;
+	font-family: cursive;
 }
 span.checkpass{
 	float:right;
 	margin-top: 33px;
 	color: red;
+	font-family: cursive;
 }
 span.checkconfirm{
 	float:right;
 	margin-top: 33px;
 	color: red;
+	font-family: cursive;
 }
 input.btnpass{
 	width: 73px;
