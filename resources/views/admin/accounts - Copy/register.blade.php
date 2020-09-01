@@ -32,7 +32,7 @@
 
       <form action="{{ url('admin/check-register') }}" method="post" class="validatedForm" id="registration" name="registration">
         @csrf
-        <div class="form-group input-group mb-3">
+        <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="*Họ tên" id="name" name="name" minlength="3" required >
           <div class="input-group-append">
             <div class="input-group-text">
@@ -42,7 +42,7 @@
           
         </div>
 
-        <div class="form-group input-group mb-3">
+        <div class="input-group mb-3">
           <input type="email" class="form-control" name="email" id="email" placeholder="*Email" required >
           <div class="input-group-append">
             <div class="input-group-text">
@@ -50,7 +50,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group input-group mb-3">
+        <div class="input-group mb-3">
           <input type="password" class="form-control" id="password" name="password" placeholder="*Mật khẩu"  minlength="6" maxlength="30" required >
           <div class="input-group-append">
             <div class="input-group-text">
@@ -58,7 +58,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group input-group mb-3">
+        <div class="input-group mb-3">
           <input type="password" class="form-control" name="password_confirm" id="password_confirm"  placeholder="*Nhập lại mật khẩu" maxlength="30" minlength="6" required >
           <div class="input-group-append">
             <div class="input-group-text">
@@ -66,7 +66,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group input-group mb-3">
+        <div class="input-group mb-3">
           <input type="number" class="form-control" name="phone" id="phone" placeholder="*Số điện thoại"  minlength="10" maxlength="13" required >
           <div class="input-group-append">
             <div class="input-group-text">
@@ -74,7 +74,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group input-group mb-3">
+        <div class="input-group mb-3">
           <input type="date" class="form-control birthday" name="birthday" id="birthday" placeholder="*Ngày sinh" min="1990-01-01" max="2020-01-01" required >
           <div class="input-group-append">
             <div class="input-group-text">
@@ -82,6 +82,7 @@
             </div>
           </div>
         </div>
+        <span class="erorrName"></span>
         <div class="row">
           <div class="col-7">
             <div class="icheck-primary">
@@ -123,71 +124,9 @@
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <script src="js/admin-js.js"></script>
 <script src="js/bootstrap-validate.js"></script>
-<script type="text/javascript">
-$(document).ready(function () {
-  
-  $('#registration').validate({
-    rules: {
-      email: {
-        required: true,
-        
-      },
-      name: {
-        required: true,
-        minlength: 2
-      },
-      password: {
-        required: true,
-        minlength: 6
-      },
-      password_confirm: {
-        required: true,
-        equalTo: "#password"
-      },
-      phone: {
-        required: true,
-        number: true
-      }
-    },
-    messages: {
-      email: {
-        required: "Vui lòng nhập email vào",
-      },
-      name: {
-        required: "Vui lòng nhập tên vào",
-        minlength: "Tên quá ngắn",
-      },
-      password: {
-        required: "Vui lòng nhập mật khẩu vào",
-        minlength: "Tên quá ngắn"
-      },
-      password_confirm: {
-        required: "Vui lòng nhập nật khẩu vào",
-        equalTo: "Mật khẩu không trùng",
-      },
-      phone: {
-        required: "Vui lòng nhập số điện thoại vào",
-        number: " Vui lòng nhập kiểu số"
-      }
-    },
-    errorElement: 'span',
-    errorPlacement: function (error, element) {
-      error.addClass('invalid-feedback');
-      element.closest('.form-group').append(error);
-    },
-    highlight: function (element, errorClass, validClass) {
-      $(element).addClass('is-invalid');
-    },
-    unhighlight: function (element, errorClass, validClass) {
-      $(element).removeClass('is-invalid');
-    }
-  });
-});
-</script>
 </body>
 </html>

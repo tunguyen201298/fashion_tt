@@ -19,16 +19,16 @@ Route::get('login','AccountController@getLogin');
 
 /*----------------Admin------------------*/
 Route::group(['prefix' => '/admin','namespace'=>'Admin'],function(){
-	Route::get('/login','AccountController@index');
-	Route::get('/register','AccountController@register');
-	Route::post('/check-register', 'AccountController@checkRegister');
-	/*Route::group(['middleware' => ['auth.admin']], function ()
-	{*/
+	Route::get('/login','UsersController@login');
+	Route::get('/register','UsersController@register');
+	Route::post('/check-register', 'UsersController@checkRegister');
+	Route::group(['middleware' => ['auth.admin']], function ()
+	{
 		Route::get('/','HomesController@index');
 		Route::resource('roles', RolesController::class);
 		Route::resource('users', UsersController::class);
 		Route::resource('categories', CategoriesController::class);
-	/*});*/
+	});
 });
 //Auth::routes();
 

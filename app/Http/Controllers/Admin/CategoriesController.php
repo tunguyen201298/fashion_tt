@@ -171,7 +171,7 @@ class CategoriesController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->back()->with('message', $response['message']);
+            return redirect('admin/categories')->with(['message' => $response['message'], 'alert-class' => 'alert-success']);
         } catch (ValidatorException $e) {
 
             if ($request->wantsJson()) {
@@ -201,11 +201,11 @@ class CategoriesController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Category deleted.',
+                'message' => 'Xóa danh mục thành công!',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Category deleted.');
+        return redirect()->back()->with(['message' => $response['message'], 'alert-class' => 'alert-success']);
     }
 }

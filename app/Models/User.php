@@ -20,6 +20,15 @@ class User extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = [
+    	'name',
+    	'email',
+    	'email-verified-at',
+    	'password',
+    	'phone',
+    	'role_id',
+    	'birth-date',
+    	'remember_token'
+    ];
 
 }
