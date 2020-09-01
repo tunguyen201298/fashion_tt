@@ -30,43 +30,48 @@
                   </tr>
               </thead>
               <tbody>
-                @foreach($roles as $role)
+                @if(!$roles->isEmpty())
+                  @foreach($roles as $role)
+                    <tr>
+                        <td class="text-center">
+                            {{ $no++ }}
+                        </td>
+                        <td>
+                            <a>
+                                {{ $role->name }}
+                            </a>
+                            
+                        </td>
+                        
+                        <td class="project-actions text-right">
+                            <a class="btn btn-primary btn-sm" href="#">
+                                <i class="fas fa-folder">
+                                </i>
+                                View
+                            </a>
+                            <a class="btn btn-info btn-sm" href="{{ url('admin/roles/'.$role->id.'/edit') }}">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Edit
+                            </a>
+                            <a class="btn btn-danger btn-sm" href="#">
+                                <i class="fas fa-trash">
+                                </i>
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                  @endforeach  
+                @else
                   <tr>
-                      <td class="text-center">
-                          {{ $no++ }}
-                      </td>
-                      <td>
-                          <a>
-                              {{ $role->name }}
-                          </a>
-                          
-                      </td>
-                      
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="{{ url('admin/roles/'.$role->id.'/edit') }}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                      </td>
+                      <td colspan="3">{{trans('Không có dữ liệu')}}</td>
                   </tr>
-                @endforeach  
+                @endif
               </tbody>
           </table>
         </div>
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
-
     </section>
 @stop

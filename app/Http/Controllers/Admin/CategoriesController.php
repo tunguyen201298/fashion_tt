@@ -48,17 +48,16 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        //$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $categories = $this->repository->all();
-
+        $title = "Danh mục";
         if (request()->wantsJson()) {
 
             return response()->json([
                 'data' => $categories,
             ]);
         }
-
-        return view('categories.index', compact('categories'));
+        return view('Admin.categories.index', compact('categories', 'title'));
     }
 
     /**

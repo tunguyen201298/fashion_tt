@@ -80,7 +80,6 @@ class RolesController extends Controller
     }
     public function store(RoleCreateRequest $request)
     {
-        dd('ấd');
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
@@ -157,7 +156,6 @@ class RolesController extends Controller
      */
     public function update(RoleUpdateRequest $request, $id)
     {
-        dd($request->all());
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
@@ -165,7 +163,7 @@ class RolesController extends Controller
             $role = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Role updated.',
+                'message' => 'Cập nhập quyền mới thành công.',
                 'data'    => $role->toArray(),
             ];
 

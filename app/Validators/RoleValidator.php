@@ -19,13 +19,12 @@ class RoleValidator extends LaravelValidator
      */
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
-        	'name' => 'required|unique:roles|minlength:5',
+        	'name' => 'required|unique:roles',
     	],
         ValidatorInterface::RULE_UPDATE => [],
     ];
     protected $messages = [
-        'name.required' => 'Vui lòng nhập vào',
-        'name.minlength' => 'Tên quá ngắn'
+        'name.required' => 'Vui lòng nhập vào'
         
     ];
 }

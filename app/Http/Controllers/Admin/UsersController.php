@@ -55,14 +55,15 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $title = "Đăng nhập";
+        $users = $this->repository->all();
         if (request()->wantsJson()) {
             return response()->json([
                 'data' => $users,
             ]);
         }
-        return view('accounts.login', compact('users','title'));
+        return view('Admin.accounts.login', compact('users','title'));
     }
 
     /**

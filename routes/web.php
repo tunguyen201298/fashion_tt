@@ -27,6 +27,7 @@ Route::group(['prefix' => '/admin','namespace'=>'Admin'],function(){
 		Route::get('/','HomesController@index');
 		Route::resource('roles', RolesController::class);
 		Route::resource('users', UsersController::class);
+		Route::resource('categories', CategoriesController::class);
 	/*});*/
 });
 //Auth::routes();
