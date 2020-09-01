@@ -1,5 +1,5 @@
 
-var check = false;
+var root = 'http://localhost:81/fashion_tt/';
 
 $(function(){
     $("input[name=phone]")[0].oninvalid = function () {
@@ -69,5 +69,7 @@ $('#birthday').on('blur change keyup', function(){
 		$("#birthday").css('border-color', 'green');
 	}
 });
-
-
+function deleteModal(id, route) {
+    $('#form_modal_delete').attr('action', root + route);
+    $('#del_modal_id').val(id);
+}

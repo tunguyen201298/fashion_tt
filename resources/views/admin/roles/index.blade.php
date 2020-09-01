@@ -44,21 +44,18 @@
                         </td>
                         
                         <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" href="#">
-                                <i class="fas fa-folder">
-                                </i>
-                                View
-                            </a>
-                            <a class="btn btn-info btn-sm" href="{{ url('admin/roles/'.$role->id.'/edit') }}">
+                           
+                            <a class="btn btn-info btn-sm" href="{{ url('admin/roles/'.$role->id.'/edit') }}" title="Sửa">
                                 <i class="fas fa-pencil-alt">
                                 </i>
-                                Edit
+                                Sửa
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
-                                <i class="fas fa-trash">
+                            <a href="javascript:;" class="btn btn-danger btn-sm" data-toggle="modal" 
+                              data-target="#modal" onclick="deleteModal('{{$role->id}}','admin/roles/{{$role->id}}')" title="Xóa"><i class="fas fa-trash">
                                 </i>
-                                Delete
-                            </a>
+                                Xóa
+                              </a>
+                            
                         </td>
                     </tr>
                   @endforeach  
@@ -74,4 +71,5 @@
       </div>
       <!-- /.card -->
     </section>
+    @include('admin.layouts.delete')
 @stop

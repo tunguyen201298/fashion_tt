@@ -41,7 +41,9 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (breadcrumb) -->
+    @include('admin.message.success')
     @include('admin.layouts.breadcrumb')
+
       @yield('content')
   </div>
   <!-- footer -->
@@ -90,6 +92,7 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="js/admin-js.js"></script>
 @yield('scripts')
 </body>
 </html>

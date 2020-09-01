@@ -11,6 +11,7 @@ use App\Http\Requests\CategoryCreateRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Repositories\CategoryRepository;
 use App\Validators\CategoryValidator;
+use App\Models\Category;
 
 /**
  * Class CategoriesController.
@@ -69,6 +70,13 @@ class CategoriesController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
+    public function create()
+    {
+        $title = 'Thêm mới danh mục';
+        $category = new Category();
+        $parent_id = $this->repository->findByField('parent_id','0');
+        return view('admin.categories.create', compact('title', 'category','parent_id'));
+    }
     public function store(CategoryCreateRequest $request)
     {
         try {
@@ -78,8 +86,8 @@ class CategoriesController extends Controller
             $category = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Category created.',
-                'data'    => $category->toArray(),
+                'message' => 'Thêm mới danh mục thành công.',
+                'data'    => $category->toArray(),  
             ];
 
             if ($request->wantsJson()) {
@@ -87,7 +95,7 @@ class CategoriesController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->back()->with('message', $response['message']);
+            return redirect('admin/categories')->with(['message' => $response['message'], 'alert-class' => 'alert-success']);
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
@@ -154,7 +162,7 @@ class CategoriesController extends Controller
             $category = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Category updated.',
+                'message' => 'Cập nhập danh mục thành công.',
                 'data'    => $category->toArray(),
             ];
 

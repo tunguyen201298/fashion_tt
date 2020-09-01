@@ -25,8 +25,17 @@ class RoleCreateRequest extends FormRequest
     {
         
         return [
-            'name' => 'required|unique:roles',
+            'name' => 'required|unique:roles,name|min:2'
 
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Vui lòng điền vào',
+            'name.unique' => 'Tên quyền đã tồn tại!',
+            'name.min' => 'Tên quyền quá ngắn'
         ];
     }
 }

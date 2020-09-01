@@ -3,7 +3,10 @@
   	<div class="row">
   		<div class="col-md-6">
   			<label for="exampleInputEmail1">Tên quyền</label>
-		    <input type="text" name="name" value="{{ $role->name }}" class="form-control" id="nameRole" placeholder="Nhập tên">
+		    <input type="text" name="name" value="{{ $role->name }}" class="form-control" id="name" placeholder="Nhập tên">
+        @error('name')
+              <span id="name-error" class="invalid-feedback" style="display: inline;">{{ $message }}</span>
+        @enderror
   		</div>
   	</div> 
   </div>
@@ -17,13 +20,11 @@
 @section('scripts')
 <script type="text/javascript">
 $(document).ready(function () {
-  
   $('#createRole').validate({
     rules: {
       name: {
         required: true,
-        minlength: 2,
-        unique: roles
+        minlength: 2
       }
     },
     messages: {

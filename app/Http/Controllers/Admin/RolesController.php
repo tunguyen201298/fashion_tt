@@ -96,7 +96,7 @@ class RolesController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->back()->with('message', $response['message']);
+            return redirect('admin/roles')->with(['message' => $response['message'], 'alert-class' => 'alert-success']);
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
@@ -172,7 +172,7 @@ class RolesController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->back()->with('message', $response['message']);
+            return redirect('admin/roles')->with('message', $response['message']);
         } catch (ValidatorException $e) {
 
             if ($request->wantsJson()) {
@@ -202,11 +202,11 @@ class RolesController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Role deleted.',
+                'message' => 'Xóa quyền truy cập thành công!',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Role deleted.');
+        return redirect()->back()->with(['message' => $response['message'], 'alert-class' => 'alert-success']);
     }
 }
