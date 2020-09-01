@@ -31,9 +31,9 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Đăng nhập để bắt đầu phiên làm việc.</p>
 
-      <form action="../../index3.html" method="post">
+      <form action="../../index3.html" id="formlogin" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" id="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Mật khẩu">
+          <input type="password" id="password" class="form-control" placeholder="Mật khẩu">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -94,6 +94,36 @@
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-
+@section('scripts')
+<script type="text/javascript">
+$(document).ready(function () {
+  
+  $('#formlogin').validate({
+    rules: {
+      email: {
+        required: true,
+        minlength: 2
+      }
+    },
+    messages: {
+      email: {
+        required: "Vui lòng nhập vào",
+        minlength: "Tên quá ngắn"
+      }
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script>
 </body>
 </html>

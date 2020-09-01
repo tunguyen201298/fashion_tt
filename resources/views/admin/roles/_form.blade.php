@@ -7,11 +7,18 @@
   		</div>
   	</div> 
   </div>
+<<<<<<< HEAD
+  
+=======
+>>>>>>> d1c754d914ac085a3ffc5abe9b9e08f37b8a7dd7
 </div>
 <!-- /.card-body -->
 <div class="card-footer">
   <a href="{{ url('admin/roles') }}" class="btn btn-secondary" >Trở lại</a>
   <button type="submit"  class="btn btn-success float-right" style="width: 100px;">Lưu</button>
+<<<<<<< HEAD
+</div> 
+=======
 </div>
 @section('scripts')
 <script type="text/javascript">
@@ -47,4 +54,5 @@ $(document).ready(function () {
 });
 </script>
 @stop
+>>>>>>> d1c754d914ac085a3ffc5abe9b9e08f37b8a7dd7
 					
