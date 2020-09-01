@@ -7,11 +7,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class User.
+ * Class Post.
  *
  * @package namespace App\Models;
  */
-class User extends Model implements Transformable
+class Post extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -20,15 +20,6 @@ class User extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [
-    	'name',
-    	'email',
-    	'email-verified-at',
-    	'password',
-    	'phone',
-    	'role_id',
-    	'birth-date',
-    	'remember_token'
-    ];
+    protected $fillable = [];
 
 }

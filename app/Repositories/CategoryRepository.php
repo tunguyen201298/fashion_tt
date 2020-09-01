@@ -5,11 +5,11 @@ namespace App\Repositories;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface UserRepository.
+ * Interface CategoryRepository.
  *
  * @package namespace App\Repositories;
  */
-interface RoleRepository extends RepositoryInterface
+interface CategoryRepository extends RepositoryInterface
 {
-    function checkUrl();
+    //
 }

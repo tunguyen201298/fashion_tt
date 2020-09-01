@@ -13,9 +13,9 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form  action="{{url('admin/roles')}}" method="POST" role="form" id="createRole">
+              <form  action="{{url('admin/categories')}}" method="POST" role="form" id="createCategory">
                 @csrf
-                @include('admin.roles._form')
+                @include('admin.categories._form')
               </form>
             </div>
             <!-- /.card -->

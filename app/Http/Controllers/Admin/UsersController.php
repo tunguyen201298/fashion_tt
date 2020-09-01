@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -55,18 +55,15 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-
-        $users = $this->roleRepository->abc(1);
-
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $title = "Đăng nhập";
+        $users = $this->repository->all();
         if (request()->wantsJson()) {
-
             return response()->json([
                 'data' => $users,
             ]);
         }
-        dd($users);
-        return view('users.index', compact('users'));
+        return view('Admin.accounts.login', compact('users','title'));
     }
 
     /**
@@ -208,5 +205,19 @@ class UsersController extends Controller
         }
 
         return redirect()->back()->with('message', 'User deleted.');
+    }
+    public function login()
+    {
+        $title = 'Đăng nhập';
+        return view('admin.accounts.login', compact('title'));
+    }
+    public function register()
+    {
+        $title = 'Đăng ký';
+        return view('admin.accounts.register', compact('title'));
+    }
+    public function checkRegister(Request $request)
+    {
+        dd($request->all());
     }
 }

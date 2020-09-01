@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleCreateRequest extends FormRequest
+class CategoryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,19 +23,16 @@ class RoleCreateRequest extends FormRequest
      */
     public function rules()
     {
-        
         return [
-            'name' => 'required|unique:roles,name|min:2'
-
+            'name' => 'required|unique:categories,name|min:2'
         ];
     }
-
     public function messages()
     {
         return [
             'name.required' => 'Vui lòng điền vào',
-            'name.unique' => 'Tên quyền đã tồn tại!',
-            'name.min' => 'Tên quyền quá ngắn'
+            'name.unique' => 'Tên thể loại đã tồn tại!',
+            'name.min' => 'Tên thể loại quá ngắn'
         ];
     }
 }

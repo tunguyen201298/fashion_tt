@@ -6,11 +6,11 @@ use \Prettus\Validator\Contracts\ValidatorInterface;
 use \Prettus\Validator\LaravelValidator;
 
 /**
- * Class RoleValidator.
+ * Class CategoryValidator.
  *
  * @package namespace App\Validators;
  */
-class RoleValidator extends LaravelValidator
+class CategoryValidator extends LaravelValidator
 {
     /**
      * Validation Rules
@@ -18,13 +18,7 @@ class RoleValidator extends LaravelValidator
      * @var array
      */
     protected $rules = [
-        ValidatorInterface::RULE_CREATE => [
-        	'name' => 'required|unique:roles',
-    	],
+        ValidatorInterface::RULE_CREATE => [],
         ValidatorInterface::RULE_UPDATE => [],
-    ];
-    protected $messages = [
-        'name.required' => 'Vui lòng nhập vào'
-        
     ];
 }

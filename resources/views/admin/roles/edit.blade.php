@@ -13,8 +13,9 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form  method="post" action="{{url('admin/roles/store')}}" role="form" id="createRole">
+              <form  method="POST" action="{{url('admin/roles/'.$role->id)}}" role="form" >
                 @csrf
+                @method('PUT')
                 @include('admin.roles._form')
               </form>
             </div>

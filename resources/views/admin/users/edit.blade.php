@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('title', $title)
 @section('content')
-  <section class="content">
+	<section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
@@ -13,9 +13,10 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form  action="{{url('admin/roles')}}" method="POST" role="form" id="createRole">
+              <form  method="POST" action="{{url('admin/categories/'.$category->id)}}" role="form" id="createCategory">
                 @csrf
-                @include('admin.roles._form')
+                @method('PUT')
+                @include('admin.categories._form')
               </form>
             </div>
             <!-- /.card -->
@@ -31,4 +32,3 @@
       </div><!-- /.container-fluid -->
     </section>
 @stop
-

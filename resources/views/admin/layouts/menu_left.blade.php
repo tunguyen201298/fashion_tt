@@ -19,7 +19,7 @@
                with font-awesome or any other icon font library -->
                <!-- menu-open -->
           <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link @if(\Request::is('admin/')){{'active'}}@endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -28,7 +28,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+                <a href="./index.html" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v1</p>
                 </a>
@@ -48,7 +48,7 @@
             </ul>
           </li>
           <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link @if(\Request::is('admin/users/*')){{'active'}}@endif">
               <i class="nav-icon fas fa-user"></i>
               <p>Quản lý người dùng
                 <i class="right fas fa-angle-left"></i>
@@ -71,9 +71,15 @@
           </li>
           
           <li class="nav-item">
-            <a href="{{ url('admin/roles') }}" class="nav-link">
+            <a href="{{ url('admin/roles') }}" class="nav-link @if(\Request::is('admin/roles*')){{'active'}}@endif">
               <i class="nav-icon fas fa-critical-role"></i>
               <p>Quản lý quyền</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/categories') }}" class="nav-link @if(\Request::is('admin/categories*')){{'active'}}@endif">
+              <i class="nav-icon fas fa-critical-role"></i>
+              <p>Quản lý danh mục</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
