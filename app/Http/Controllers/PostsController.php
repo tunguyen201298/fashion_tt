@@ -1,42 +1,41 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\RoleCreateRequest;
-use App\Http\Requests\RoleUpdateRequest;
-use App\Repositories\RoleRepository;
-use App\Validators\RoleValidator;
-use App\Models\Role;
+use App\Http\Requests\PostCreateRequest;
+use App\Http\Requests\PostUpdateRequest;
+use App\Repositories\PostRepository;
+use App\Validators\PostValidator;
 
 /**
- * Class RolesController.
+ * Class PostsController.
  *
- * @package namespace App\Http\Controllers\Admin;
+ * @package namespace App\Http\Controllers;
  */
-class RolesController extends Controller
+class PostsController extends Controller
 {
     /**
-     * @var RoleRepository
+     * @var PostRepository
      */
     protected $repository;
 
     /**
-     * @var RoleValidator
+     * @var PostValidator
      */
     protected $validator;
 
     /**
-     * RolesController constructor.
+     * PostsController constructor.
      *
-     * @param RoleRepository $repository
-     * @param RoleValidator $validator
+     * @param PostRepository $repository
+     * @param PostValidator $validator
      */
-    public function __construct(RoleRepository $repository, RoleValidator $validator)
+    public function __construct(PostRepository $repository, PostValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -50,46 +49,38 @@ class RolesController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $title = "Quyền truy cập";
-        $no = 1;
-        $roles = $this->repository->all();
+        $posts = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $roles,
+                'data' => $posts,
             ]);
         }
-        return view('admin.roles.index', compact('roles','title','no'));
+
+        return view('posts.index', compact('posts'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  RoleCreateRequest $request
+     * @param  PostCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function create()
+    public function store(PostCreateRequest $request)
     {
-        $title = 'Thêm mới quyền';
-        $role = new Role();
-        return view('admin.roles.create', compact('title', 'role'));
-    }
-    public function store(RoleCreateRequest $request)
-    {
-        dd('ấd');
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $role = $this->repository->create($request->all());
+            $post = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Thêm mới quyền thành công.',
-                'data'    => $role->toArray(),
+                'message' => 'Post created.',
+                'data'    => $post->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -119,16 +110,16 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        $role = $this->repository->find($id);
+        $post = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $role,
+                'data' => $post,
             ]);
         }
 
-        return view('admin.roles.index', compact('role'));
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -140,33 +131,32 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        $role = $this->repository->find($id);
-        $title = "Cập nhập quyền";
-        return view('admin.roles.edit', compact('role','title'));
+        $post = $this->repository->find($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  RoleUpdateRequest $request
+     * @param  PostUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(RoleUpdateRequest $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
-        dd($request->all());
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $role = $this->repository->update($request->all(), $id);
+            $post = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Role updated.',
-                'data'    => $role->toArray(),
+                'message' => 'Post updated.',
+                'data'    => $post->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -204,11 +194,11 @@ class RolesController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Role deleted.',
+                'message' => 'Post deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Role deleted.');
+        return redirect()->back()->with('message', 'Post deleted.');
     }
 }

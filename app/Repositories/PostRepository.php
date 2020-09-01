@@ -5,11 +5,11 @@ namespace App\Repositories;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface UserRepository.
+ * Interface PostRepository.
  *
  * @package namespace App\Repositories;
  */
-interface RoleRepository extends RepositoryInterface
+interface PostRepository extends RepositoryInterface
 {
-    function checkUrl();
+    //
 }

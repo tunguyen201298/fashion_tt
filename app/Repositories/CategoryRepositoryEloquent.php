@@ -2,18 +2,18 @@
 
 namespace App\Repositories;
 
-use Illuminate\Http\Request;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\RoleRepository;
-use App\Models\Role;
+use App\Repositories\CategoryRepository;
+use App\Models\Category;
+use App\Validators\CategoryValidator;
 
 /**
- * Class UserRepositoryEloquent.
+ * Class CategoryRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
+class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
 {
     /**
      * Specify Model class name
@@ -22,7 +22,18 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
      */
     public function model()
     {
-        return Role::class;
+        return Category::class;
+    }
+
+    /**
+    * Specify Validator class name
+    *
+    * @return mixed
+    */
+    public function validator()
+    {
+
+        return CategoryValidator::class;
     }
 
 
@@ -32,13 +43,6 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
-    }
-
-    public function checkUrl(){
-        if (\Request::is('admin/roles/*/edit')) {
-            return 1;
-        }
-        return 0;
     }
     
 }

@@ -7,36 +7,35 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\RoleCreateRequest;
-use App\Http\Requests\RoleUpdateRequest;
-use App\Repositories\RoleRepository;
-use App\Validators\RoleValidator;
-use App\Models\Role;
+use App\Http\Requests\CategoryCreateRequest;
+use App\Http\Requests\CategoryUpdateRequest;
+use App\Repositories\CategoryRepository;
+use App\Validators\CategoryValidator;
 
 /**
- * Class RolesController.
+ * Class CategoriesController.
  *
- * @package namespace App\Http\Controllers\Admin;
+ * @package namespace App\Http\Controllers;
  */
-class RolesController extends Controller
+class CategoriesController extends Controller
 {
     /**
-     * @var RoleRepository
+     * @var CategoryRepository
      */
     protected $repository;
 
     /**
-     * @var RoleValidator
+     * @var CategoryValidator
      */
     protected $validator;
 
     /**
-     * RolesController constructor.
+     * CategoriesController constructor.
      *
-     * @param RoleRepository $repository
-     * @param RoleValidator $validator
+     * @param CategoryRepository $repository
+     * @param CategoryValidator $validator
      */
-    public function __construct(RoleRepository $repository, RoleValidator $validator)
+    public function __construct(CategoryRepository $repository, CategoryValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -50,46 +49,38 @@ class RolesController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $title = "Quyền truy cập";
-        $no = 1;
-        $roles = $this->repository->all();
+        $categories = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $roles,
+                'data' => $categories,
             ]);
         }
-        return view('admin.roles.index', compact('roles','title','no'));
+
+        return view('categories.index', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  RoleCreateRequest $request
+     * @param  CategoryCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function create()
+    public function store(CategoryCreateRequest $request)
     {
-        $title = 'Thêm mới quyền';
-        $role = new Role();
-        return view('admin.roles.create', compact('title', 'role'));
-    }
-    public function store(RoleCreateRequest $request)
-    {
-        dd('ấd');
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $role = $this->repository->create($request->all());
+            $category = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Thêm mới quyền thành công.',
-                'data'    => $role->toArray(),
+                'message' => 'Category created.',
+                'data'    => $category->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -119,16 +110,16 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        $role = $this->repository->find($id);
+        $category = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $role,
+                'data' => $category,
             ]);
         }
 
-        return view('admin.roles.index', compact('role'));
+        return view('categories.show', compact('category'));
     }
 
     /**
@@ -140,33 +131,32 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        $role = $this->repository->find($id);
-        $title = "Cập nhập quyền";
-        return view('admin.roles.edit', compact('role','title'));
+        $category = $this->repository->find($id);
+
+        return view('categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  RoleUpdateRequest $request
+     * @param  CategoryUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(RoleUpdateRequest $request, $id)
+    public function update(CategoryUpdateRequest $request, $id)
     {
-        dd($request->all());
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $role = $this->repository->update($request->all(), $id);
+            $category = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Role updated.',
-                'data'    => $role->toArray(),
+                'message' => 'Category updated.',
+                'data'    => $category->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -204,11 +194,11 @@ class RolesController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Role deleted.',
+                'message' => 'Category deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Role deleted.');
+        return redirect()->back()->with('message', 'Category deleted.');
     }
 }

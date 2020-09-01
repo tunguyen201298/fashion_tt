@@ -22,19 +22,13 @@ Route::group(['prefix' => '/admin','namespace'=>'Admin'],function(){
 	Route::get('/login','AccountController@index');
 	Route::get('/register','AccountController@register');
 	Route::post('/check-register', 'AccountController@checkRegister');
-	Route::get('/','HomesController@index');
-	Route::group(['prefix' => '/roles'], function(){
-		Route::get('/', 'RolesController@index');
-		Route::get('/create', 'RolesController@create');
-		Route::post('/store', 'RolesController@store');
-	});
-	
 	/*Route::group(['middleware' => ['auth.admin']], function ()
-	{
+	{*/
 		Route::get('/','HomesController@index');
-	});*/
+		Route::resource('roles', RolesController::class);
+		Route::resource('users', UsersController::class);
+	/*});*/
 });
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
-//Route::resource('users', UsersController::class);
