@@ -38,3 +38,11 @@ Route::group(['prefix' => '/admin','namespace'=>'Admin'],function(){
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
+<<<<<<< HEAD
+//Route::resource('users', UsersController::class);
+
+/*Route::resource('photo', 'PhotoController', ['except' => [
+    'create', 'store', 'update/{id}', 'destroy','{id}/edit',
+]]);*/
+=======
+>>>>>>> 3b39ce8edd71136549de451d0854ec2d363c7db8
