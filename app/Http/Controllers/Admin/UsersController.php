@@ -11,7 +11,10 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
+use App\Validators\RegisterValidator;
 use App\Repositories\RoleRepository;
+use App\Http\Requests\RegisterRequest;
+use App\Models\User;
 
 /**
  * Class UsersController.
@@ -29,6 +32,10 @@ class UsersController extends Controller
      * @var RoleRepository
      */
     protected $roleRepository;
+    /**
+     * @var RoleRepository
+     */
+    protected $registerValidator;
 
     /**
      * @var UserValidator
@@ -41,10 +48,11 @@ class UsersController extends Controller
      * @param UserRepository $repository
      * @param UserValidator $validator
      */
-    public function __construct(UserRepository $repository, UserValidator $validator, RoleRepository $roleRepository)
+    public function __construct(UserRepository $repository, UserValidator $validator, RegisterValidator $registerValidator, RoleRepository $roleRepository)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
+        $this->registerValidator  = $registerValidator;
         $this->roleRepository = $roleRepository;
     }
 
@@ -55,6 +63,7 @@ class UsersController extends Controller
      */
     public function index()
     {
+        dd('$request->all()');
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $title = "Đăng nhập";
         $users = $this->repository->all();
@@ -63,7 +72,7 @@ class UsersController extends Controller
                 'data' => $users,
             ]);
         }
-        return view('Admin.accounts.login', compact('users','title'));
+        return view('admin.accounts.login', compact('users','title'));
     }
 
     /**
@@ -77,14 +86,15 @@ class UsersController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
+        dd($request->all());
         try {
+            $this->registerValidator->with($request->all());
+            //$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $user = User::create($request->all());
+            $user = User::create($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $response = [
-                'message' => 'User created.',
+                'message' => 'Đăng ký tài khoản thành công',
                 'data'    => $user->toArray(),
             ];
 
@@ -206,18 +216,5 @@ class UsersController extends Controller
 
         return redirect()->back()->with('message', 'User deleted.');
     }
-    public function login()
-    {
-        $title = 'Đăng nhập';
-        return view('admin.accounts.login', compact('title'));
-    }
-    public function register()
-    {
-        $title = 'Đăng ký';
-        return view('admin.accounts.register', compact('title'));
-    }
-    public function checkRegister(Request $request)
-    {
-        dd($request->all());
-    }
+    
 }

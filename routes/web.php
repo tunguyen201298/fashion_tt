@@ -19,9 +19,14 @@ Route::get('login','AccountController@getLogin');
 
 /*----------------Admin------------------*/
 Route::group(['prefix' => '/admin','namespace'=>'Admin'],function(){
-	Route::get('/login','UsersController@login');
-	Route::get('/register','UsersController@register');
-	Route::post('/check-register', 'UsersController@checkRegister');
+	Route::group(['prefix' => '/accounts'], function(){
+		Route::get('/login','AccountController@login')->name('accounts.login');
+		Route::post('/check-login','AccountController@checkLogin')->name('accounts.check-login');
+		Route::get('/register','AccountController@register')->name('accounts.register');
+		Route::post('/register-store', 'AccountController@registerStore')->name('accounts.register-store');
+		Route::get('/forgot-password','AccountController@forgotPassword')->name('accounts.forgot-password');
+	});
+	
 	Route::group(['middleware' => ['auth.admin']], function ()
 	{
 		Route::get('/','HomesController@index');

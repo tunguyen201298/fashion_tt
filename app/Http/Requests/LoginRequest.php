@@ -24,15 +24,15 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:categories,name|min:2'
+            'email' => 'required|email|min:2'
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Vui lòng điền vào',
-            'name.unique' => 'Tên thể loại đã tồn tại!',
-            'name.min' => 'Tên thể loại quá ngắn'
+            'email.required' => 'Vui lòng điền vào',
+            'email.email' => 'Tên thể loại đã tồn tại!',
+            'email.min' => 'Tên thể loại quá ngắn'
         ];
     }
 }

@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="card-body p-0">
-          <table class="table table-striped projects center">
+          <table id="example1" class="table table-bordered table-striped">
               <thead>
                   <tr>
                       <th style="width: 2%">

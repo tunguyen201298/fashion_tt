@@ -1,6 +1,29 @@
 <div class="card-body">
   <div class="form-group">
   	<div class="row">
+      @if(\Request::is('admin/roles/create'))
+        <div class="col-md-3">
+          <label for="exampleInputEmail1">Type</label>
+          <input type="text" name="type" value="{{ $role->type }}" class="form-control" id="type" placeholder="Nhập type">
+          @error('type')
+                <span id="name-error" class="invalid-feedback" style="display: inline;">{{ $message }}</span>
+          @enderror
+        </div>
+      @else
+        <div class="col-md-3">
+          <label for="exampleInputEmail1">Type</label>
+          <select name="type" class="form-control select2" style="width: 100%;">
+            @foreach($types as $item)
+              <option value="{{$item->type}}" @if($role->type==$item->type){{'selected'}}@endif>{{$item->name}}</option>
+            @endforeach
+            
+          </select>
+          @error('type')
+                <span id="name-error" class="invalid-feedback" style="display: inline;">{{ $message }}</span>
+          @enderror
+        </div>
+      @endif
+      
   		<div class="col-md-6">
   			<label for="exampleInputEmail1">Tên quyền</label>
 		    <input type="text" name="name" value="{{ $role->name }}" class="form-control" id="name" placeholder="Nhập tên">

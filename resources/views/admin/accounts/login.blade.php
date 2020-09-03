@@ -1,26 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Đăng nhập</title>
-  <link rel="icon" href="{{asset('public/images/admin/logo/tt_favicon.png')}}" type="image/png">
-  <base href="{{ asset('public/admin') }}/">
-
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
+@extends('admin.accounts.master')
+@section('content')
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
@@ -31,27 +10,34 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Đăng nhập để bắt đầu phiên làm việc.</p>
 
-      <form action="../../index3.html" id="formlogin" method="post">
+      <form action="{{route('accounts.check-login')}}" id="formlogin" method="POST">
+        @csrf
         <div class="input-group mb-3">
-          <input type="email" id="email" class="form-control" placeholder="Email">
+          <input type="email" id="email" name="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
+          @error('email')
+            <span id="name-error" class="invalid-feedback" style="display: inline;">{{ $message }}</span>
+          @enderror
         </div>
         <div class="input-group mb-3">
-          <input type="password" id="password" class="form-control" placeholder="Mật khẩu">
+          <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
+          @error('password')
+            <span id="name-error" class="invalid-feedback" style="display: inline;">{{ $message }}</span>
+          @enderror
         </div>
         <div class="row">
           <div class="col-7">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
+              <input type="checkbox" id="remember" name="remember">
               <label for="remember">
                 Nhớ tôi
               </label>
@@ -77,37 +63,41 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">Quên mật khẩu</a>
+        <a href="{{route('accounts.forgot-password')}}">Quên mật khẩu</a>
       </p>
       <p class="mb-0">
-        <a href="{{ url('admin/register') }}" class="text-center">Đăng ký tài khoản</a>
+        <a href="{{ route('accounts.register') }}" class="text-center">Đăng ký tài khoản</a>
       </p>
     </div>
     <!-- /.login-card-body -->
   </div>
 </div>
 <!-- /.login-box -->
-
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+</body>
+@stop
+@section('scripts')
 <script type="text/javascript">
 $(document).ready(function () {
   
   $('#formlogin').validate({
     rules: {
       email: {
+        email: true,
         required: true,
         minlength: 2
+      },
+      password: {
+        required: true
       }
     },
     messages: {
       email: {
+        email: "Mail sai",
         required: "Vui lòng nhập vào",
         minlength: "Tên quá ngắn"
+      },
+      password: {
+        required: "Vui lòng nhập vào",
       }
     },
     errorElement: 'span',
@@ -124,5 +114,4 @@ $(document).ready(function () {
   });
 });
 </script>
-</body>
-</html>
+@stop

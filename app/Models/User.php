@@ -27,7 +27,7 @@ class User extends Model implements Transformable
     	'password',
     	'phone',
     	'role_id',
-    	'birth-date',
+    	'birth_date',
     	'remember_token'
     ];
 

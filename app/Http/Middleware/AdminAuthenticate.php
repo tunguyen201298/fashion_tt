@@ -39,7 +39,7 @@ class AdminAuthenticate
                 return response('Unauthorized.', 401);
             } else {
                 //sủ dụng thèn nào để khi nào admin nó chuyển về trang login admin
-                return redirect(url('admin/login'));
+                return redirect(route('accounts.login'));
             }
         }
         return $next($request);

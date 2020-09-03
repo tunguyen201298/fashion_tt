@@ -140,8 +140,9 @@ class RolesController extends Controller
     public function edit($id)
     {
         $role = $this->repository->find($id);
+        $types = $this->repository->all();
         $title = "Cập nhập quyền";
-        return view('admin.roles.edit', compact('role','title'));
+        return view('admin.roles.edit', compact('role','title','types'));
     }
 
     /**

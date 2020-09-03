@@ -24,7 +24,8 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:categories,name|min:2'
+            'name' => 'required|unique:categories,name|min:2',
+            'email' => 'email|unique:users,email'
         ];
     }
     public function messages()
@@ -32,7 +33,8 @@ class RegisterRequest extends FormRequest
         return [
             'name.required' => 'Vui lòng điền vào',
             'name.unique' => 'Tên thể loại đã tồn tại!',
-            'name.min' => 'Tên thể loại quá ngắn'
+            'name.min' => 'Tên thể loại quá ngắn',
+            'email.unique' => 'Trùng'
         ];
     }
 }

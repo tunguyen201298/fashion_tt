@@ -20,6 +20,6 @@ class Role extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name','type'];
 
 }

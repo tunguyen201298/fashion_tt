@@ -93,8 +93,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'email' => [
+            'provider' => 'email',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
